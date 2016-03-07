@@ -5,10 +5,13 @@
  * Portions Copyright 2013-2014 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootlint/blob/master/LICENSE)
  */
-/*eslint-env node */
+
+/* eslint-env node */
+/* eslint indent: [2, 2] */
+
+'use strict';
 
 module.exports = function (grunt) {
-  'use strict';
 
   // Force use of Unix newlines
   grunt.util.linefeed = '\n';
@@ -25,13 +28,11 @@ module.exports = function (grunt) {
   grunt.initConfig({
     // Metadata.
     pkg: grunt.file.readJSON('package.json'),
-    banner: (
-      "/*!\n * Bootlint v<%= pkg.version %> (<%= pkg.homepage %>)\n" +
-      " * <%= pkg.description %>\n" +
-      " * Copyright (c) 2014-2016 Christopher Rebert\n" +
-      " * Licensed under the MIT License (https://github.com/twbs/bootlint/blob/master/LICENSE).\n" +
-      " */\n"
-    ),
+    banner: '/*!\n * Bootlint v<%= pkg.version %> (<%= pkg.homepage %>)\n' +
+      ' * <%= pkg.description %>\n' +
+      ' * Copyright (c) 2014-2016 Christopher Rebert\n' +
+      ' * Licensed under the MIT License (https://github.com/twbs/bootlint/blob/master/LICENSE).\n' +
+      ' */\n',
     // Task configuration.
     browserify: {
       dist: {
@@ -73,23 +74,6 @@ module.exports = function (grunt) {
         src: ['test/**/*.js', '!test/lib/**/*.js']
       }
     },
-    jscs: {
-      web: {
-        src: '<%= jshint.web.src %>'
-      },
-      gruntfile: {
-        src: '<%= jshint.gruntfile.src %>',
-        options: {
-          validateIndentation: 2
-        }
-      },
-      lib: {
-        src: '<%= jshint.lib.src %>'
-      },
-      test: {
-        src: '<%= jshint.test.src %>'
-      }
-    },
     eslint: {
       options: {
         config: '.eslintrc'
@@ -129,7 +113,7 @@ module.exports = function (grunt) {
   });
 
   // Tasks
-  grunt.registerTask('lint', ['jshint', 'jscs', 'eslint']);
+  grunt.registerTask('lint', ['jshint', 'eslint']);
   grunt.registerTask('dist', ['browserify', 'usebanner']);
   grunt.registerTask('test', ['lint', 'dist', 'nodeunit', 'qunit']);
   grunt.registerTask('default', ['test']);

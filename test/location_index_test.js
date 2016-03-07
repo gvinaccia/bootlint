@@ -1,5 +1,5 @@
-/*eslint-env node */
-/*eslint no-process-env: 0 */
+/* eslint-env node */
+/* eslint no-process-env: 0 */
 
 'use strict';
 
@@ -35,10 +35,6 @@ var EXAMPLE = [
 var EXAMPLE_WITHOUT_TERMINATOR = EXAMPLE.substring(0, EXAMPLE.length - 1);
 
 exports.bootlint = {
-    setUp: function (done) {
-        // setup here
-        done();
-    },
     'LocationIndex with string terminated by a newline': function (test) {
         var index = new LocationIndex(EXAMPLE);
         test.expect(10);

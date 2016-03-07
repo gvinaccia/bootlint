@@ -1,5 +1,5 @@
-/*eslint-env node */
-/*eslint no-process-env: 0 */
+/* eslint-env node */
+/* eslint no-process-env: 0 */
 
 'use strict';
 
@@ -43,17 +43,13 @@ function lintHtml(html, disabledIds) {
 */
 
 exports.bootlint = {
-    setUp: function (done) {
-        // setup here
-        done();
-    },
     'HTML5 DOCTYPE': function (test) {
         test.expect(4);
         test.deepEqual(lintHtml(utf8Fixture('doctype/missing.html')),
-            ["Document is missing a DOCTYPE declaration"],
+            ['Document is missing a DOCTYPE declaration'],
             'should complain when no doctype declaration is present.');
         test.deepEqual(lintHtml(utf8Fixture('doctype/html4.html')),
-            ["Document declares a non-HTML5 DOCTYPE"],
+            ['Document declares a non-HTML5 DOCTYPE'],
             'should complain when the HTML4 doctype is used.');
         test.deepEqual(lintHtml(utf8Fixture('doctype/html5-normal.html')),
             [],
@@ -92,7 +88,7 @@ exports.bootlint = {
             [],
             'should not complain when X-UA-Compatible <meta> tag is present but lowercased.');
         test.deepEqual(lintHtml(utf8Fixture('x-ua-compatible/missing.html')),
-            ["`<head>` is missing X-UA-Compatible `<meta>` tag that disables old IE compatibility modes"],
+            ['`<head>` is missing X-UA-Compatible `<meta>` tag that disables old IE compatibility modes'],
             'should complain when X-UA-Compatible <meta> tag is missing.');
         test.done();
     },
@@ -100,8 +96,8 @@ exports.bootlint = {
         test.expect(1);
         test.deepEqual(lintHtml(utf8Fixture('bs-v2.html')),
             [
-                "Found one or more uses of outdated Bootstrap v2 `.spanN` grid classes",
-                "Only columns (`.col-*-*`) may be children of `.row`s"
+                'Found one or more uses of outdated Bootstrap v2 `.spanN` grid classes',
+                'Only columns (`.col-*-*`) may be children of `.row`s'
             ],
             'should complain when Bootstrap v2 grid classes are present.');
         test.done();
@@ -118,7 +114,7 @@ exports.bootlint = {
             [],
             'should not complain when rows are children of columns.');
         test.deepEqual(lintHtml(utf8Fixture('containers/missing.html')),
-            ["Found one or more `.row`s that were not children of a grid column or descendants of a `.container` or `.container-fluid`"],
+            ['Found one or more `.row`s that were not children of a grid column or descendants of a `.container` or `.container-fluid`'],
             'should complain when a row is not a descendant of a container.');
         test.deepEqual(lintHtml(utf8Fixture('containers/ancestor.html')),
             [],
@@ -128,16 +124,16 @@ exports.bootlint = {
     'nested containers': function (test) {
         test.expect(4);
         test.deepEqual(lintHtml(utf8Fixture('containers/nested-fixed-fixed.html')),
-            ["Containers (`.container` and `.container-fluid`) are not nestable"],
+            ['Containers (`.container` and `.container-fluid`) are not nestable'],
             'should complain when a container is within a container.');
         test.deepEqual(lintHtml(utf8Fixture('containers/nested-fixed-fluid.html')),
-            ["Containers (`.container` and `.container-fluid`) are not nestable"],
+            ['Containers (`.container` and `.container-fluid`) are not nestable'],
             'should complain when a container is within a container.');
         test.deepEqual(lintHtml(utf8Fixture('containers/nested-fluid-fluid.html')),
-            ["Containers (`.container` and `.container-fluid`) are not nestable"],
+            ['Containers (`.container` and `.container-fluid`) are not nestable'],
             'should complain when a container is within a container.');
         test.deepEqual(lintHtml(utf8Fixture('containers/nested-fluid-fixed.html')),
-            ["Containers (`.container` and `.container-fluid`) are not nestable"],
+            ['Containers (`.container` and `.container-fluid`) are not nestable'],
             'should complain when a container is within a container.');
         test.done();
     },
@@ -147,7 +143,7 @@ exports.bootlint = {
             [],
             'should not complain when viewport <meta> tag is present');
         test.deepEqual(lintHtml(utf8Fixture('viewport/missing.html')),
-            ["`<head>` is missing viewport `<meta>` tag that enables responsiveness"],
+            ['`<head>` is missing viewport `<meta>` tag that enables responsiveness'],
             'should complain when viewport <meta> tag is missing.');
         test.done();
     },
@@ -155,7 +151,7 @@ exports.bootlint = {
         test.expect(1);
         test.deepEqual(lintHtml(utf8Fixture('grid/row-col-same-elem.html')),
             [
-                "Found both `.row` and `.col-*-*` used on the same element",
+                'Found both `.row` and `.col-*-*` used on the same element',
                 'Columns (`.col-*-*`) can only be children of `.row`s or `.form-group`s'
             ],
             'should complain when .row and .col-*-* are used on the same element.');
@@ -164,17 +160,17 @@ exports.bootlint = {
     'row and container classes on same element': function (test) {
         test.expect(2);
         test.deepEqual(lintHtml(utf8Fixture('containers/fixed-row-same-elem.html')),
-            ["Found one or more `.row`s that were not children of a grid column or descendants of a `.container` or `.container-fluid`"],
+            ['Found one or more `.row`s that were not children of a grid column or descendants of a `.container` or `.container-fluid`'],
             'should complain when .row and .container are used on the same element.');
         test.deepEqual(lintHtml(utf8Fixture('containers/fluid-row-same-elem.html')),
-            ["Found one or more `.row`s that were not children of a grid column or descendants of a `.container` or `.container-fluid`"],
+            ['Found one or more `.row`s that were not children of a grid column or descendants of a `.container` or `.container-fluid`'],
             'should complain when .row and .container-fluid are used on the same element.');
         test.done();
     },
     'remote modals': function (test) {
         test.expect(1);
         test.deepEqual(lintHtml(utf8Fixture('modal/remote.html')),
-            ["Found one or more modals using the deprecated `remote` option"],
+            ['Found one or more modals using the deprecated `remote` option'],
             'should complain when remote modals are present.');
         test.done();
     },
@@ -187,7 +183,7 @@ exports.bootlint = {
             [],
             'should not complain when jQuery & a plugin is present.');
         test.deepEqual(lintHtml(utf8Fixture('jquery/old-url.html')),
-            ["Found what might be an outdated version of jQuery; Bootstrap requires jQuery v1.9.1 or higher"],
+            ['Found what might be an outdated version of jQuery; Bootstrap requires jQuery v1.9.1 or higher'],
             'should complain about old version of jQuery based on URL');
         test.deepEqual(lintHtml(utf8Fixture('jquery/missing.html')),
             ["Unable to locate jQuery, which is required for Bootstrap's JavaScript plugins to work"],

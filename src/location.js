@@ -1,4 +1,4 @@
-/*eslint-env node */
+/* eslint-env node */
 var binarySearch = require('binary-search');
 
 (function () {
@@ -39,7 +39,7 @@ var binarySearch = require('binary-search');
         var nextLineIndex = 1;
         var charIndex = 0;
         while (charIndex < string.length) {
-            charIndex = string.indexOf("\n", charIndex);
+            charIndex = string.indexOf('\n', charIndex);
             if (charIndex === -1) {
                 /* @covignore */
                 break;

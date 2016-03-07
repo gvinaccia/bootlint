@@ -1,5 +1,5 @@
-/*eslint-env node */
-/*eslint no-process-exit: 0 */
+/* eslint-env node */
+/* eslint no-process-exit: 0 */
 'use strict';
 
 var Deferred = require('bluebird');
@@ -31,13 +31,13 @@ module.exports = function () {
             if (lint.elements) {
                 lint.elements.each(function (_, element) {
                     var loc = element.startLocation;
-                    console.log(origin + ":" + (loc.line + 1) + ":" + (loc.column + 1), lintId, lint.message);
+                    console.log(origin + ':' + (loc.line + 1) + ':' + (loc.column + 1), lintId, lint.message);
                     totalErrCount++;
                     output = true;
                 });
             }
             if (!output) {
-                console.log(origin + ":", lintId, lint.message);
+                console.log(origin + ':', lintId, lint.message);
                 totalErrCount++;
             }
         };
@@ -89,13 +89,13 @@ module.exports = function () {
     });
 
     Deferred.all(lintedFiles).then(function () {
-        console.log("");
+        console.log('');
 
         if (totalErrCount > 0) {
-            console.log("For details, look up the lint problem IDs in the Bootlint wiki: https://github.com/twbs/bootlint/wiki");
+            console.log('For details, look up the lint problem IDs in the Bootlint wiki: https://github.com/twbs/bootlint/wiki');
         }
 
-        console.log("" + totalErrCount + " lint error(s) found across " + totalFileCount + " file(s).");
+        console.log('' + totalErrCount + ' lint error(s) found across ' + totalFileCount + ' file(s).');
 
         if (totalErrCount) {
             process.exit(1);

@@ -4,7 +4,7 @@ Run it via: npm run start
 This is pretty niche. Most users should probably use the CLI or bookmarklet instead.
 */
 
-/*eslint-env node */
+/* eslint-env node */
 
 'use strict';
 
@@ -61,9 +61,9 @@ function lintsFor(html, disabledIds) {
 }
 
 
-/*eslint-disable new-cap */
+/* eslint-disable new-cap */
 var routes = express.Router();
-/*eslint-enable new-cap */
+/* eslint-enable new-cap */
 
 routes.get('/', function (req, res) {
     res.status(200).json({status: 200, message: 'Bootlint is online!'});
@@ -82,7 +82,7 @@ routes.post('/', function (req, res) {
         'application/json': function () {
             var disabledIds = disabledIdsFor(req);
             var html = req.body;
-            // console.log("HTML: ", html);
+            // console.log('HTML: ', html);
             var lints = lintsFor(html, disabledIds);
             res.status(200).json(lints);
         },
@@ -114,7 +114,7 @@ app.use(function (req, res, next) {
 // development error handler
 // will print stacktrace
 
-/*eslint-disable no-unused-vars */
+/* eslint-disable no-unused-vars */
 app.use(function (err, req, res, next) {
     var isHttpErr = !!err.status;
 
@@ -132,7 +132,7 @@ app.use(function (err, req, res, next) {
 
     res.status(err.status).json(errJson);
 });
-/*eslint-enable no-unused-vars */
+/* eslint-enable no-unused-vars */
 
 
 module.exports = app;
