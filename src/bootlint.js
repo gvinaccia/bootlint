@@ -737,7 +737,7 @@ var LocationIndex = _location.LocationIndex;
     });
     addLinter("E014", function lintColParentsAreRowsOrFormGroups($, reporter) {
         var selector = COL_CLASSES.map(function (colClass) {
-            return '*:not(.row):not(.form-group)>' + colClass + ':not(col):not(th):not(td)';
+            return '*:not(.row):not(.form-group):not(.mj-tile__content-container)>' + colClass + ':not(col):not(th):not(td)';
         }).join(',');
 
         var colsOutsideRowsAndFormGroups = $(selector);
@@ -1101,6 +1101,12 @@ var LocationIndex = _location.LocationIndex;
         var modalDialogs = $('.modal-dialog:not([role="document"])');
         if (modalDialogs.length) {
             reporter('`.modal-dialog` must have a `role="document"` attribute.', modalDialogs);
+        }
+    });
+    addLinter("E501", function lintTileContents($, reporter) {
+        var tiles = $('.mj-tile__content-container').children(':not([class*="col"])');
+        if (tiles.length) {
+            reporter('.mj-tile__content-container deve contenere obbligatoriamente delle .col-*-*', tiles);
         }
     });
     exports._lint = function ($, reporter, disabledIdList, html) {

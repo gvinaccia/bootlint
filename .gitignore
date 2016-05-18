@@ -29,3 +29,7 @@ node_modules
 # Vim generated files
 *.swp
 *.swo
+
+
+# IntelliJ
+.idea
